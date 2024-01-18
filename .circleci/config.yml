@@ -1,15 +1,42 @@
-version: "2.1"
+version: 2.1
 
-orbs:
-  maven: circleci/maven@1.4.1
-workflows:
-  maven_test:
-    jobs:
-      - maven/test:
-          command: "-X verify"
-      - deploy:
-          name: Deploy to Package
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:latest
+    working_directory: ~/project
+
+    steps:
+      - checkout
+      - run:
+          name: Set up JDK 11
           command: |
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              mvn clean package
-            fi
+            sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-11.0.1/bin/java 1
+            sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk-11.0.1/bin/javac 1
+            sudo update-alternatives --set java /usr/lib/jvm/jdk-11.0.1/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/jdk-11.0.1/bin/javac
+
+      - run:
+          name: Build with Maven
+          command: mvn clean install
+
+      - run:
+          name: Run Tests
+          command: mvn test
+
+  deploy:
+    docker:
+      - image: circleci/openjdk:latest
+
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
