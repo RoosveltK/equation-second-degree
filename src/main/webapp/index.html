@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Equation second degree</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styling/bootstrap.min.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="my-3">
+        Bonjour, vous cherchez à résoudre une équation du type : ax+b+c=0
+      </h1>
+      <form action="./api" method="POST" class="mx-3">
+        <fieldset>
+          <div class="form-group">
+            <label for="inputA" class="form-label mt-4">a</label>
+            <input
+              name="a"
+              type="number"
+              class="form-control"
+              id="inputA"
+              placeholder="Entrez va valeur de a"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputB" class="form-label mt-4">b</label>
+            <input
+              name="b"
+              type="number"
+              class="form-control"
+              id="inputB"
+              placeholder="Entrez va valeur de b"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputC" class="form-label mt-4">a</label>
+            <input
+              name="c"
+              type="number"
+              class="form-control"
+              id="inputC"
+              placeholder="Entrez va valeur de c"
+            />
+          </div>
+        </fieldset>
+
+        <button type="button" class="btn btn-primary mt-3">Résoudre</button>
+      </form>
+    </div>
+  </body>
+</html>
