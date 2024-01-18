@@ -1,0 +1,16 @@
+version: "2.1"
+
+orbs:
+  maven: circleci/maven@3.6.3
+
+workflows:
+  maven_test:
+    jobs:
+      - maven/test:
+          command: "-X verify"
+      - deploy:
+          name: Deploy to Package
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              mvn clean package
+            fi
