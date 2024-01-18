@@ -27,7 +27,7 @@ public class Servlet extends HttpServlet {
 
             System.out.println("a = " + a);
             System.out.println("b = " + b);
-            System.out.println("c = " + c);
+            System.out.println("c =  " + c);
 
             ServletContext context = getServletContext();
             // String path =
