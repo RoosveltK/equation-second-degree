@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <title>Equation second degree</title>
     <meta charset="UTF-8" />

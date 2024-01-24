@@ -37,8 +37,8 @@ public class MainServlet extends HttpServlet {
 
             // System.out.println("Roots: " + roots[0] + " " + roots[1]);
 
-            // RequestDispatcher rd = request.getRequestDispatcher("index.html");
-            // rd.forward(request, response);
+            RequestDispatcher rd = request.getRequestDispatcher("result.jsp");
+            rd.forward(request, response);
 
             // String path =
             // context.getRealPath("/WEB-INF/classes/com/equation/EquationSolver.class");

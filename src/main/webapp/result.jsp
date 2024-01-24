@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <title>Equation second degree</title>
     <meta charset="UTF-8" />
@@ -11,10 +11,10 @@
   <body>
     <div class="container">
       <h3 class="my-3">
-        Bonjour, vous cherchez à résoudre une équation du type : ax^2+bx+c=0
+        Bonjour, vous cherchez a resoudre une equation du type : ax^2+bx+c=0
       </h3>
 
-      <h1>Racines du polynôme</h1>
+      <h1>Racines du polynome</h1>
 
       <% double[] roots = (double[])request.getAttribute("roots"); if
       (roots.length > 0) { %>
