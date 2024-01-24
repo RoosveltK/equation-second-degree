@@ -1,40 +1,33 @@
 package second_degree_equation;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.lang.reflect.InvocationTargetException;
-
 import org.junit.jupiter.api.Test;
 
 public class EquationTest {
 
     @Test
-    public void testSolveDiscriminantNegative()
-            throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException,
-            SecurityException, InstantiationException, ClassNotFoundException {
-        double a = 0.0;
-        double b = 2.0;
-        double c = 5.0;
+    public void test_solve() {
+        try {
+            Class<?> dynamicClass = Class.forName("com.equation.EquationSolver");
+            Object dynamicObject = dynamicClass.getDeclaredConstructor().newInstance();
 
-        Class<?> dynamicClass = Class.forName("com.equation.EquationSolver");
-        Object dynamicObject = dynamicClass.getDeclaredConstructor().newInstance();
-        double[] result = (double[]) dynamicClass.getMethod("solve", double.class, double.class, double.class)
-                .invoke(dynamicObject, a, b, c);
+            double a = 0.0;
+            double b = 2.0;
+            double c = 5.0;
 
-        if (result.length == 0) {
-            // Automatically pass
-            assertEquals(0, 0);
-        } else {
-            double tcheck_result = a * result[0] * result[0] + b * result[0] + c;
-            assertEquals(0.0, tcheck_result, 0.001);
-        }
+            double[] result = (double[]) dynamicClass.getMethod("solve", double.class, double.class, double.class)
+                    .invoke(dynamicObject, a, b, c);
 
-        if (result.length == 0) {
-            // Automatically pass
-            assertEquals(0, 0);
-        } else {
-            double checkResult = a * result[0] * result[0] + b * result[0] + c;
-            assertEquals(0.0, checkResult, 0.001);
+            if (a == 0 || b * b - 4 * a * c < 0) {
+                assertEquals(0, result.length, "Doit retourner un tableau vide");
+            } else {
+                for (double root : result) {
+                    double check_result = a * root * root + b * root + c;
+                    assertEquals(0.0, check_result, 0.001, "La racine doit satisfaire l'équation");
+                }
+            }
+        } catch (Exception e) {
+            fail("Une exception a été levée lors du test : " + e.getMessage());
         }
     }
 

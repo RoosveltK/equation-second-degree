@@ -115,16 +115,17 @@ public class TestCodeGenerator {
                         "        Object dynamicObject = dynamicClass.getDeclaredConstructor().newInstance();\n" +
                         "        double[] result = (double[]) dynamicClass.getMethod(\"solve\", double.class, double.class, double.class).invoke(dynamicObject, a, b, c);\n"
                         +
-                        "        if (result.length == 0) {\n" +
-                        "                assertEquals(0, 0);\n" +
-                        "                saveTestResultToCSV(a, b, c,new double[0], true);\n" +
+                        "        if (a == 0 || b * b - 4 * a * c < 0) {\n" +
+                        "            assertEquals(0, result.length, \"Doit retourner un tableau vide\");\n" +
                         "        } else {\n" +
-                        "            double tcheck_result = a * result[0] * result[0] + b * result[0] + c;\n" +
-                        "            saveTestResultToCSV(a, b, c, result, assertEqualsWithTolerance(0.0, tcheck_result, 0.001));\n"
+                        "            for (double root : result) {\n" +
+                        "                double check_result = a * root * root + b * root + c;\n" +
+                        "                assertEquals(0.0, check_result, 0.001, \"La racine doit satisfaire l'équation\");\n"
                         +
-                        "           assertEquals(0.0, tcheck_result, 0.001);\n" +
+                        "            }\n" +
                         "        }\n" +
-                        "    }\n\n\n",
+                        "        saveTestResultToCSV(a, b, c, result, true);\n" +
+                        "    }\n",
                 testName, a, b, c);
     }
 

@@ -3,15 +3,15 @@ package com.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class Servlet extends HttpServlet {
+import com.equation.EquationSolver;
+
+public class MainServlet extends HttpServlet {
 
     private static final long serialVersionUID = 2161581691453946987L;
 
@@ -25,11 +25,21 @@ public class Servlet extends HttpServlet {
             String b = request.getParameter("b");
             String c = request.getParameter("c");
 
-            System.out.println("a = " + a);
-            System.out.println("b = " + b);
-            System.out.println("c =  " + c);
+            Double aDouble = Double.parseDouble(a);
+            Double bDouble = Double.parseDouble(b);
+            Double cDouble = Double.parseDouble(c);
 
-            ServletContext context = getServletContext();
+            EquationSolver solver = new EquationSolver();
+
+            double[] roots = solver.solve(aDouble, bDouble, cDouble);
+
+            request.setAttribute("roots", roots);
+
+            // System.out.println("Roots: " + roots[0] + " " + roots[1]);
+
+            // RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            // rd.forward(request, response);
+
             // String path =
             // context.getRealPath("/WEB-INF/classes/com/equation/EquationSolver.class");
             // System.out.println(path);
