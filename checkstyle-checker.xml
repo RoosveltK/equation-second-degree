@@ -4,15 +4,11 @@
         "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <!-- Example: Disallow the use of tabs for indentation -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
-    </module>
+    </module>   
 
-    <!-- Example: Set the maximum line length to 120 characters -->
-    <module name="LineLength">
-        <property name="max" value="20"/>
-    </module>
-    
-    <!-- Add more rules as needed -->
+     <module name="LineLength">
+        <property name="max" value="120"/>
+    </module> 
 </module>
