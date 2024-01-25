@@ -20,13 +20,11 @@ jobs:
             mvn package
             cp target/*.war ~/tomcat/webapps/
 
-      # Démarrage de Tomcat
       - run:
           name: Start Tomcat
           background: true
           command: ~/tomcat/bin/startup.sh
 
-      # Exécution des tests E2E
       - run:
           name: Run E2E Tests
           command: mvn verify
@@ -51,9 +49,29 @@ jobs:
           name: Run Checkstyle
           command: mvn checkstyle:check
 
+  deploy:
+    docker:
+      - image: cimg/openjdk:11.0.11-node
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: Install SSH Keys and SCP
+          command: |
+            apt-get update
+            apt-get install -y sshpass
+      - run:
+          name: Transfer WAR to Server and Restart Tomcat
+          command: |
+            sshpass -p "your_vps_password" scp -o StrictHostKeyChecking=no target/*.war username@51.91.97.32:/path/to/tomcat/webapps/
+            sshpass -p "your_vps_password" ssh -o StrictHostKeyChecking=no username@51.91.97.32 "sudo systemctl restart tomcat"
+
 workflows:
   build-and-test:
     jobs:
       - unit-tests
       - check-style
       - build-e2e
+      - deploy:
+          requires:
+            - build-e2e
