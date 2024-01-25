@@ -16,8 +16,8 @@
         <% double[] roots = (double[])request.getAttribute("roots"); if (roots
         != null && roots.length > 0) { %>
         <p>
-          Les racines du polynome sont : <% for (int i = 0; i < roots.length;
-          i++) { %> <%= "x" + (i + 1) + " = " + roots[i] %>, <% } %>
+          Les racines du polynome sont <% for (int i = 0; i < roots.length; i++)
+          { %> <%= "x" + (i + 1) + " = " + roots[i] %>, <% } %>
         </p>
         <% } else { %>
         <p>Pas de solutions reelles pour cette equation</p>

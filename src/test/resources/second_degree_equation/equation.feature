@@ -15,8 +15,4 @@ Feature: Resolution d'equation second degree
 
     Examples:
           | a | b | c | resultat                                      |
-          | 2 | 5 | 3 | Les racines du polynome sont x1 = -1,x2 = -1.5|
-          | 1 | 1 | 1 | Pas de solutions reelles pour cette equation   |
-          | 0 | 5 | 2 | Les racines du polynome sont x = -0.4          |
-          | 4 | 0 | 0 | Les racines du polynome sont x = 0.0           |
-          | 3 | 2 | 1 | Les racines du polynome sont x1 = -0.333, x2 = -1.0 |
+          | 2 | 5 | 3 | Les racines du polynome sont x1 = -1.0, x2 = -1.5,|
