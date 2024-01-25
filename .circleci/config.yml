@@ -19,9 +19,10 @@ jobs:
       - checkout
       - run:
           name: Run E2E Tests
-          command: mvn test -Dtest=E2ETestPattern* # Remplacer par le motif approprié
+          command: mvn verify
 
 workflows:
   build-and-test:
     jobs:
       - unit-tests
+      - e2e-tests

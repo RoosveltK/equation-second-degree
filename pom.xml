@@ -80,8 +80,65 @@
 
     </dependencies>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.21.2</version>
+                <configuration>
+                <linkXref>true</linkXref>
+                <sourceEncoding>utf-8</sourceEncoding>
+                <minimumTokens>100</minimumTokens>
+                <targetJdk>1.5</targetJdk>
+                <excludes>
+                    <exclude>**/*Bean.java</exclude>
+                    <exclude>*/generated/.java</exclude>
+                </excludes>
+                <excludeRoots>
+                    <excludeRoot>target/generated-sources/stubs</excludeRoot>
+                </excludeRoots>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                <configLocation>checkstyle-checker.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
     <build>
         <plugins>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>3.15.0</version>
+            <configuration>
+                <linkXRef>true</linkXRef>
+                <minimumTokens>100</minimumTokens>
+                <sourceEncoding>utf-8</sourceEncoding>
+                <failOnViolation>true</failOnViolation>
+                <format>xml</format>
+                <outputDirectory>reports/pmd</outputDirectory>
+                <targetDirectory>reports/pmd</targetDirectory>
+                <configLocation>pmd-ruleset.xml</configLocation>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>pmd</goal>
+                        <goal>check</goal>
+                        <goal>cpd-check</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

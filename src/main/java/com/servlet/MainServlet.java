@@ -39,7 +39,7 @@ public class MainServlet extends HttpServlet {
             rd.forward(request, response);
 
         } catch (Exception e) {
-            // RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+            System.out.println(e.getMessage());
         } finally {
             out.close();
         }
