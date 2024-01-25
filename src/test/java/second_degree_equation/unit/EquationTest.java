@@ -1,4 +1,4 @@
-package second_degree_equation;
+package second_degree_equation.unit;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

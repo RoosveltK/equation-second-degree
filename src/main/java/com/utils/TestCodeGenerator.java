@@ -10,7 +10,7 @@ import java.util.Random;
 public class TestCodeGenerator {
 
     public static void main(String[] args) {
-        String filePath = "src/test/java/second_degree_equation/EquationSolverTest.java";
+        String filePath = "src/test/java/second_degree_equation/unit/EquationSolverTest.java";
         String testPrefixMethod = "testSolve";
         String testCaseFile = "src/test/resources/second_degree_equation/test-case.txt";
 
@@ -42,7 +42,7 @@ public class TestCodeGenerator {
                 "    return Math.abs(expected - actual) <= tolerance;\n" +
                 "}";
 
-        String fileHeader = String.format("package second_degree_equation;\n" +
+        String fileHeader = String.format("package second_degree_equation.unit;\n" +
                 "import org.apache.commons.csv.CSVFormat;\n" +
                 "import org.apache.commons.csv.CSVPrinter;\n" +
                 "import java.lang.reflect.InvocationTargetException;\n" +

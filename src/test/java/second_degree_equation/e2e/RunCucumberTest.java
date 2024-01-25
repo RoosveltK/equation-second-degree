@@ -1,4 +1,4 @@
-package second_degree_equation;
+package second_degree_equation.e2e;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;

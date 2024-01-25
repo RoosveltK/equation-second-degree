@@ -1,23 +1,27 @@
 version: 2.1
 
 jobs:
-  build:
+  unit-tests:
     docker:
       - image: cimg/openjdk:11.0.11-node
     working_directory: ~/project
-
     steps:
       - checkout
-
       - run:
-          name: Build with Maven
-          command: mvn clean install
-
-      - run:
-          name: Run Tests
+          name: Run Unit Tests
           command: mvn test
 
+  e2e-tests:
+    docker:
+      - image: cimg/openjdk:11.0.11-node
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: Run E2E Tests
+          command: mvn test -Dtest=E2ETestPattern* # Remplacer par le motif approprié
+
 workflows:
-  build-and-deploy:
+  build-and-test:
     jobs:
-      - build
+      - unit-tests

@@ -1,4 +1,4 @@
-package second_degree_equation;
+package second_degree_equation.e2e;
 
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
