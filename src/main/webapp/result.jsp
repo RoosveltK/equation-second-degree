@@ -10,23 +10,19 @@
 
   <body>
     <div class="container">
-      <h3 class="my-3">
-        Bonjour, vous cherchez a resoudre une equation du type : ax^2+bx+c=0
-      </h3>
+      <h1>Resultats de l'equation</h1>
 
-      <h1>Racines du polynome</h1>
-
-      <% double[] roots = (double[])request.getAttribute("roots"); if
-      (roots.length > 0) { %>
-      <p>Les racines du polynôme sont :</p>
-      <ul>
-        <% for (double root : roots) { %>
-        <li><%= root %></li>
+      <div id="roots">
+        <% double[] roots = (double[])request.getAttribute("roots"); if (roots
+        != null && roots.length > 0) { %>
+        <p>
+          Les racines du polynome sont : <% for (int i = 0; i < roots.length;
+          i++) { %> <%= "x" + (i + 1) + " = " + roots[i] %>, <% } %>
+        </p>
+        <% } else { %>
+        <p>Pas de solutions reelles pour cette equation</p>
         <% } %>
-      </ul>
-      <% } else { %>
-      <p>Aucune racine trouvée.</p>
-      <% } %>
+      </div>
     </div>
   </body>
 </html>
